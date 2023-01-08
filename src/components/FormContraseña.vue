@@ -145,7 +145,7 @@ export default {
     </form>
     <footer class="footer d-flex align-items-center justify-content-center">
       <p class="text-center">
-        Hecho por Gino Bartolucci <a target="_blank" href="https://github.com/GinoBartolucci/generador-contrasenas"><img class="github" alt="git hub" src="github-mark-white.png"></a>
+        Hecho por Gino Bartolucci <a target="_blank" href="https://github.com/GinoBartolucci/generador-contrasenas"><img class="github" alt="git hub" src="/github.png"></a>
       </p>
     </footer>
   </div>
