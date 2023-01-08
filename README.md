@@ -1,35 +1,16 @@
-# generador-contraseñas
+# Generador de contraseñas en español
 
-This template should help get you started developing with Vue 3 in Vite.
+Generador de contraseñas con las +1000 palabras comunes en español.
 
-## Recommended IDE Setup
+[Link a la pagina](https://ginobartolucci.github.io/generador-contrasenas/ "Link a la pagina")
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Proyecto
 
-## Customize configuration
+Hecho con Vite - Vue 3
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+La lista de palabras se encuentran en /src/assets/palabras.js.
+Extraidas de [1000 palabras básicas en español](https://es.wiktionary.org/wiki/Ap%C3%A9ndice:1000_palabras_b%C3%A1sicas_en_espa%C3%B1ol "1000 palabras básicas en español"). Se removieron los tildes y los espacios.
 
-## Project Setup
+---
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+[Linkedin	](https://www.linkedin.com/in/ginobartolucci/ "linkedin gino")

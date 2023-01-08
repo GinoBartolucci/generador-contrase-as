@@ -3,6 +3,7 @@ import listaPalabras from '../assets/palabras.js'
 export default {
   data () {
     return {
+      copiado: 'hidden',
       rango: 24,
       contraseña: '',
       separadores: 1,
@@ -21,7 +22,9 @@ export default {
     }
   },
   methods: {
-    seleccionarPlabras () {
+    seleccionarPlabras() {
+      this.copiado= 'hidden'
+
       this.contraseña = ' '
       const listaPalabras = this.palabras
       let index = 0
@@ -69,6 +72,7 @@ export default {
       elemento.select()
       elemento.setSelectionRange(0, 99999)
       document.execCommand('copy')
+      this.copiado= 'visible'
     }
   }
 }
@@ -82,18 +86,19 @@ export default {
           Generador de contraseñas
         </h1>
       </div>
+      
       <div class="col-sm-12 input-group">
-        <input id="inputContraseña" ref="password" v-model="contraseña" class="form-control py-2" placeholder="Dale clic &quot;Generar contraseña&quot;" readonly>
+        <input id="inputContraseña" ref="password" v-model="contraseña" class="form-control py-2 fs-4" placeholder="Dale clic a &quot;Generar contraseña&quot;" readonly>
         <div class="input-group-text">
-          <button class="btn copiar btn-success " @click.prevent="copiar() ">
-            Copiar
-          </button>
+          <div class="copiado">
+            <button class="btn copiar btn-success fs-5" @click.prevent="copiar() ">
+              Copiar
+            </button>
+            <span :style="{ visibility: copiado }" class="copiadotext">¡Contraseña copiada!</span>
+          </div>
         </div>
       </div>
-      <div class="col-sm-12">
-        <label class="form-label">Largo de la contraseña:  {{ rango }}</label>
-        <input v-model="rango" type="range" class="form-range" min="6" max="160" step="1">
-      </div>
+      
       <div class="col-sm-6">
         <label class="form-check-label">Mayusculas: </label>
         <div class="form-check ">
@@ -130,21 +135,44 @@ export default {
           </label>
         </div>
       </div>
-      <button class="btn generar btn-success py-3" @click.prevent="seleccionarPlabras()">
+      <div class="col-sm-12">
+        <label class="form-label">Largo de la contraseña:  {{ rango }}</label>
+        <input v-model="rango" type="range" class="form-range" min="6" max="160" step="1">
+      </div>
+      <button class="btn generar btn-success py-2 mt-3" @click.prevent="seleccionarPlabras()">
         Generar contraseña
       </button>
     </form>
+    <footer class="footer d-flex align-items-center justify-content-center">
+      <p class="text-center">
+        Hecho por Gino Bartolucci <a target="_blank" href="https://github.com/GinoBartolucci/generador-contrasenas"><img class="github" alt="git hub" src="github-mark-white.png"></a>
+      </p>
+    </footer>
   </div>
 </template>
 <style scoped>
+a, a:hover{
+  text-decoration: none;
+}
+.github{
+  margin-left: 10px;
+  width: 35px;
+  height: 35px;
+}
+.footer{
+  margin-top: 20%;
+  width: 100%;
+  text-align: center;
+  height: 60px;
+}
 .titulo{
 font-size: max(4vw ,2rem);
 }
 .form-label{
-  width: 250px;
+  width: 280px;
 }
 .generar{
-  width: 98%;
+  width: 99%;
   font-size: max(16px, 1.01vw);
 }
 .input-group-text{
@@ -198,4 +226,34 @@ input[type=range]::-ms-thumb {
   background: #FFFFFF;
   cursor: pointer;
 }
+.copiado {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.copiado .copiadotext {
+  visibility: hidden;
+  width: 165px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.copiado .copiadotext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+  }
 </style>
