@@ -1,11 +1,11 @@
 <script setup>
-import { RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+import FormContraseña from './components/FormContraseña.vue';
+
 </script>
 
 <template>
   <div class="wrapper">
-    <RouterView />
+    <FormContraseña />
   </div>
   <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
