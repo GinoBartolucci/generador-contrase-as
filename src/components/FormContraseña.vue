@@ -1,28 +1,35 @@
 <script>
 import listaPalabras from '../assets/palabras.js'
+import listaSimbolos from '../assets/simbolos.js'
 import RecomendacionesContraseña from './RecomendacionesContraseña.vue'
 import FormRange from './FormRange.vue'
 
 export default {
     components: { RecomendacionesContraseña, FormRange },
     data() {
-        return {
-            copiado: "hidden",
-            rango: 24,
-            contraseña: "",
-            separadores: 1,
-            mayusculas: 1,
-            palabras: listaPalabras,
-            listaContraseña: []
-        };
+      return {
+        copiado: "hidden",
+        rango: 24,
+        contraseña: "",
+        separadores: 1,
+        mayusculas: 1,
+        palabras: listaPalabras,
+        simbolos: listaSimbolos,
+        listaContraseña: []
+      };
     },
     watch: {
-        mayusculas: function (val) {
-            this.contraseña = this.aplicarSeparadores(this.listaContraseña);
-        },
-        separadores: function (val) {
-            this.seleccionarPlabras();
+      mayusculas: function (val) {
+        this.contraseña = this.aplicarSeparadores(this.listaContraseña);
+      },
+      separadores: function (newv, oldv) {
+        if (oldv == 1 || newv == 1) {
+          this.seleccionarPlabras();
         }
+        else {
+          this.contraseña = this.aplicarSeparadores(this.listaContraseña);
+        }
+      }
     },
   methods: {
     formRange(rango) {
@@ -53,6 +60,7 @@ export default {
         }
     },
     aplicarMayusculas(lista) {
+        this.copiado = "hidden";
         const m = this.mayusculas;
         if (m == 1) {
             return lista.map(obj => obj[0].toUpperCase() + obj.slice(1));
@@ -66,12 +74,14 @@ export default {
     },
     aplicarSeparadores(lista) {
         lista = this.aplicarMayusculas(lista);
-        let c;
+        let c = "";
         if (this.separadores == 1) {
             c = lista.join("");
         }
         else if (this.separadores == 2) {
             c = lista.join("-");
+        }else if (this.separadores == 3) {
+          c = lista.map(obj => obj = obj + (this.simbolos[Math.floor(Math.random() * this.simbolos.length)])).join("").slice(0, -1)
         }
         return c;
     },
@@ -95,7 +105,7 @@ export default {
         </h1>
       </div>   
       <div class="col-sm-12 input-group">
-        <input id="inputContraseña" ref="password" v-model="contraseña" class="form-control py-2 fs-4" 
+        <input id="inputContraseña" ref="password" v-model="contraseña" class="form-control py-2 cInput" 
                placeholder="Dale clic a &quot;Generar contraseña&quot;" readonly>
         <div class="input-group-text">
           <div class="copiado">
@@ -130,9 +140,14 @@ export default {
         <div class="form-check form-check-inline">
           <input id="radioSeparadorNada" v-model="separadores" type="radio" class="btn-check" name="radioSeparador" value="1">
           <label class="btn btn-outline-success btn-radio" for="radioSeparadorNada">No separar</label>
-        </div><div class="form-check form-check-inline">
+        </div>
+        <div class="form-check form-check-inline">
           <input id="radioSeparadorGuion" v-model="separadores" type="radio" class="btn-check" name="radioSeparador" value="2">
           <label class="btn btn-outline-success btn-radio" for="radioSeparadorGuion">Separar con guion -</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input id="radioSeparadorCaracter" v-model="separadores" type="radio" class="btn-check" name="radioSeparador" value="3">
+          <label class="btn btn-outline-success btn-radio" for="radioSeparadorCaracter">Separar con caracteres $%4&9*#5!</label>
         </div>
       </div>
       <div class="col-sm-12">
@@ -148,7 +163,9 @@ export default {
     <RecomendacionesContraseña /> 
     <footer class="footer  d-flex align-items-center justify-content-center">
       <p class="text-center">
-        Hecho por Gino Bartolucci <a target="_blank" href="https://github.com/GinoBartolucci/generador-contrasenas"><img class="github" alt="git hub" src="/github.png"></a>
+        Hecho por Gino Bartolucci <a target="_blank" href="https://github.com/GinoBartolucci/generador-contrasenas">
+          <img class="github" alt="git hub" src="/github.png">
+        </a>
       </p>
     </footer>
   </div>
@@ -175,6 +192,9 @@ a, a:hover{
   padding: 0;
   background-color: #198754;
 }
+.form-control{
+  font-size: max(16px, 1.0vw);
+}
 .form-control:focus{
   box-shadow: 1px 1px 3px #198754;
   border-color: #198754;
@@ -182,13 +202,16 @@ a, a:hover{
 .btn-radio{
   padding: 12px;
   margin: 8px;
-  font-size:  max(16px, 1.0vw);;
+  font-size:  max(20px, 1.0vw);
 }
 .btn-generar{
   width: 99%;
   padding: 12px;
   margin: 8px;
-  font-size: max(20px, 1.01vw);
+  font-size: max(24px, 1.2vw);
+}
+.cInput{
+  font-size: max(20px, 1.0vw);
 }
 .form-check{
   margin-left: 4px;

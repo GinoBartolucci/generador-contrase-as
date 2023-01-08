@@ -15,11 +15,14 @@ export default {
 <template>
   <div>
     <input v-model="rango" type="range" class="istyle" min="6" max="160" step="1">
-    <label class="form-label fs-4">Largo de la contraseña: {{ rango }}</label>
+    <label class="form-label cRange">Caracteres: {{ rango }}</label>
   </div>
 </template>
 
 <style scoped>
+.cRange{
+    font-size:  max(24px, 1.2vw);
+}
 input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;
