@@ -11,8 +11,8 @@ export default {
         copiado: "hidden",
         rango: 24,
         contraseña: "",
-        separadores: 1,
-        mayusculas: 1,
+        separadores: 3,
+        mayusculas: 2,
         palabras: listaPalabras,
         simbolos: listaSimbolos,
         listaContraseña: []
@@ -163,7 +163,7 @@ export default {
     <RecomendacionesContraseña /> 
     <footer class="footer  d-flex align-items-center justify-content-center">
       <p class="text-center">
-        Hecho por Gino Bartolucci <a target="_blank" href="https://github.com/GinoBartolucci/generador-contrasenas">
+        By Gino Bartolucci <a target="_blank" href="https://github.com/GinoBartolucci/generador-contrasenas">
           <img class="github" alt="git hub" src="/github.png">
         </a>
       </p>
