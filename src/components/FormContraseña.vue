@@ -276,7 +276,7 @@ input[type=range]::-ms-thumb {
   position: absolute;
   z-index: 1;
   top: 120%;
-  left: 50%;
+  left: 0%;
   margin-left: -80px;
 }
 
