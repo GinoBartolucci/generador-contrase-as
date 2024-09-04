@@ -15,4 +15,5 @@ Se removieron los tildes, los espacios y las palabras mas cortas que 4 caractere
 ---
 
 [Porfolio Web	](https://ginobartolucci.dev.ar/ "Porfolio Gino")
+
 [Linkedin](https://www.linkedin.com/in/ginobartolucci/ "Linkedin Gino")
